@@ -1,0 +1,38 @@
+<div class = "all-div">
+<form class="example-form" routerLink="/register" routerLinkActive="active" name = "Rform">
+
+  <p>
+
+    <mat-form-field class="example-half-width " name="regFN">
+      <mat-label>First name</mat-label>
+      <input type="text" matInput [(ngModel)]="firstName"    [ngModelOptions]="{standalone: true}" >
+    </mat-form-field>
+  
+    <mat-form-field class="example-half-width"name="regLN">
+      <mat-label>Last Name </mat-label>
+      <input type="text" matInput [(ngModel)]="lastName"  [ngModelOptions]="{standalone: true}"   >
+    </mat-form-field>
+
+  </p>
+
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input type="email" [(ngModel)]="email"  [ngModelOptions]="{standalone: true}"   matInput placeholder="Ex. pat@example.com"name="regEmail">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input type="email" [(ngModel)]="password"   [ngModelOptions]="{standalone: true}"  matInput  placeholder="Ex. must contain numbers!" name="regPass">
+    </mat-form-field>
+  </p>
+
+
+  <div class="example-button-row">
+    <button mat-flat-button color="primary" (click)="register()">Submit</button>
+  </div>
+  <a routerLink="/login">Already registered? Click here to login!</a>
+
+</form>
+</div>

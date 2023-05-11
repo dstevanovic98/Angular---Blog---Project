@@ -1,0 +1,24 @@
+<mat-form-field class="example-full-width">
+    <mat-label>Type to search blogs</mat-label>
+    <input type="text" [(ngModel)]="searchParameter" matInput>
+</mat-form-field>
+
+
+<div class="showblogs">
+    <div *ngFor='let blog of blogs | filter:searchParameter' class="spacing">
+
+        <a><mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title [id]="blog.title">{{blog.title}}</mat-card-title>
+                    <mat-card-subtitle>{{blog.author}}</mat-card-subtitle>
+                    <mat-card-subtitle>#{{blog.tag}}</mat-card-subtitle>
+                </mat-card-header>
+                <img [src]='blog.image_url' alt='blog.title'>
+                <mat-card-actions>
+                    <button mat-button (click)="openSnackBar('Liked','')">LIKE</button>
+                    <button mat-button (click)="openDialog(blog.content)">More info</button>
+                </mat-card-actions>
+            </mat-card></a>
+    </div>
+
+</div>

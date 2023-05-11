@@ -1,0 +1,23 @@
+<div class="all-div">
+  <form class="example-form" routerLink="/login" routerLinkActive="active">
+
+    <p>
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input type="email" [(ngModel)]="email" name="something" [ngModelOptions]="{standalone: true}" matInput
+          placeholder="Ex. pat@example.com">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input type="password" [(ngModel)]="password" name="some" [ngModelOptions]="{standalone: true}" matInput
+          placeholder="Ex. must contain numbers!">
+      </mat-form-field>
+    </p>
+    <div class="example-button-row">
+      <button mat-flat-button (click)="login()">Submit</button>
+    </div>
+    <a routerLink="/register">New user? Please register to start your adventures!</a>
+  </form>
+</div>

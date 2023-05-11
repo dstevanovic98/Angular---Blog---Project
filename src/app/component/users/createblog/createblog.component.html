@@ -1,0 +1,35 @@
+<div routerLink="/createBlog" class ="all-div">
+    <form class="example-form">
+        <mat-form-field class="example-half-width">
+          <mat-label>Blog name: </mat-label>
+          <input  [(ngModel)]="title" [ngModelOptions]="{standalone: true}" matInput placeholder="Ex. Easier usage of bootstrap templates">
+        </mat-form-field>
+
+          <mat-form-field class="example-half-width">
+            <mat-label>Blog tag: </mat-label>
+            <input  [(ngModel)]="tag" [ngModelOptions]="{standalone: true}"   matInput placeholder="Whitout # . Just IT, root, etc.. ">
+          </mat-form-field>
+
+          <mat-form-field class="example-half-width">
+            <mat-label>Blog image: </mat-label>
+            <input  [(ngModel)]="image_url" [ngModelOptions]="{standalone: true}"  matInput placeholder="Put link or upload image">
+          </mat-form-field>
+
+          <mat-form-field class="example-half-width">
+            <mat-label>Author: </mat-label>
+            <input  [(ngModel)]="author" [ngModelOptions]="{standalone: true}"  matInput placeholder="Blog author">
+          </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <mat-label>Blog content: </mat-label>
+          <textarea [(ngModel)]="content" [ngModelOptions]="{standalone: true}" matInput placeholder="What would you like to share?"></textarea>
+        </mat-form-field>
+
+        <div class="example-button-row">
+          <button mat-flat-button (click)="createBlog()">Submit</button>
+        </div>
+
+      </form>
+      
+</div>
+

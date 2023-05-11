@@ -1,0 +1,33 @@
+<nav>
+    <div>
+        <p>Blogs Place</p>
+
+        <div class="lista">
+
+            <button mat-button [matMenuTriggerFor]="menu" color="aliceblue"> Menu </button>
+
+            <mat-menu #menu="matMenu" class="meni">
+                <a><button class="meni" mat-menu-item routerLink="/home" routerLinkActive="active">Home</button></a>
+            </mat-menu>
+        </div>
+        <div class="time-section">
+            <h1>{{dateTime|date:'HH:mm'}}
+                <h5>{{dateTime|date:'d MMMM y'}}</h5>
+            </h1>
+        </div>
+        <div class="r-menu">
+            
+            <div class="demoSection" [matBadge] ="nUser"  matBadgeSize="medium" matBadgePosition="after"> <button mat-button [matMenuTriggerFor]="beforeMenu"color="aliceblue"> Users </button></div>
+
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <a><button mat-menu-item  class="meni"   routerLink="/register" routerLinkActive="active">Register</button></a>
+                <a><button mat-menu-item  class="meni"   routerLink="/login" routerLinkActive="active">Login</button></a>
+                <a><button mat-menu-item  class="meni"  routerLink="/createBlog" routerLinkActive="active">Create a blog</button></a>
+                <a><button mat-menu-item  class="meni"   (click) = "logout()" routerLinkActive="active">Logout</button></a>
+            </mat-menu>
+        </div>
+    </div>
+
+
+</nav>
+<!-- -->

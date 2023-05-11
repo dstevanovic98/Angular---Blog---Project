@@ -1,0 +1,33 @@
+img{
+ max-width: 25em;
+ padding: 2em;
+ border-radius:60px;
+}
+.spacing{
+    margin: 2em;
+}
+.showblogs{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.example-card{
+    border: 1px greenyellow solid;
+    max-width: 400px;
+    border-radius: 15px;
+}
+
+.example-card:hover{
+    border: 1px green solid;
+    
+}
+
+.example-position{
+    float: right;
+}
+
+.example-full-width{
+    width: 100%;
+}
+
