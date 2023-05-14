@@ -15,5 +15,8 @@ export class FromCardsComponent {
     public dialogRef: MatDialogRef<FromCardsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {content:string}) {}
 
+   async closeDialog(){
+     this.dialogRef.close();
+    }
   
 }

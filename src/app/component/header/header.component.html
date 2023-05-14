@@ -22,7 +22,7 @@
             <mat-menu #beforeMenu="matMenu" xPosition="before">
                 <a><button mat-menu-item  class="meni"   routerLink="/register" routerLinkActive="active">Register</button></a>
                 <a><button mat-menu-item  class="meni"   routerLink="/login" routerLinkActive="active">Login</button></a>
-                <a><button mat-menu-item  class="meni"  routerLink="/createBlog" routerLinkActive="active">Create a blog</button></a>
+                <a *ngIf = 'login'><button mat-menu-item  class="meni"  routerLink="/createBlog" routerLinkActive="active">Create a blog</button></a>
                 <a><button mat-menu-item  class="meni"   (click) = "logout()" routerLinkActive="active">Logout</button></a>
             </mat-menu>
         </div>

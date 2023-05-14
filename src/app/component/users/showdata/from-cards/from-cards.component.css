@@ -1,3 +1,10 @@
 p{
-    padding: 5em;
+    padding: 3em 3em 3em 3em;
+}
+.div-button{
+    padding-left: 40%;
+    padding-bottom: 2em;
+}
+button{
+    width: 150px;
 }

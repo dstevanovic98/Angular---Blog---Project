@@ -11,7 +11,7 @@ export class ApiService {
 
   supabase: SupabaseClient = createClient<Database>(initSupabase.supabaseUrl, initSupabase.supabaseKey);
 
-nUsers = 0;
+  nUsers = 0;
   constructor(private router: Router) { }
 
   async addUser(User: User) {
@@ -67,7 +67,7 @@ nUsers = 0;
     const result = await this.supabase.auth.getUser()
     console.log(result);
     return result.data.user !== null
-   
+
   }
 
   async logout() {
@@ -78,4 +78,5 @@ nUsers = 0;
 
     }
   }
-  }
+
+}

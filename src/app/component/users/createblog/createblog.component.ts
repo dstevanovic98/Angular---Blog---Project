@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
 
@@ -16,7 +15,6 @@ export class CreateblogComponent {
   tag:string = '';
   author:string ='';
   
-
   constructor(private supabase: ApiService, private router:Router) { }
   createBlog() {
     this.supabase.sendData(this.title, this.content, this.image_url, this.tag,this.author).then(Response => {this.router.navigate(['home'])});

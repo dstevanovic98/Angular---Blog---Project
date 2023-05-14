@@ -32,19 +32,26 @@ export class HomeComponent {
       console.error('Noting to show');
     }
   }
+  // Odpira SnackBar in izpiše liked če je uporabnik prijavljen. 
+  // Opens SnapBar and write (status) message.  
   async openSnackBar(message:string , action: string) {
-    if(this.api.nUsers == 1){
+   
+    if(await this.api.isLoggedIn() == true){
       this.snackBar.open(message,action,{panelClass:'snackbar', duration: 3000});
     }
     else{ 
-    this.snackBar.open('Error:Not logged in! To like, you must be loged in!','', {duration: 2000});
+    this.snackBar.open('Error: Not logged in! To like, you must be loged in!','', {duration: 2000});
     }
     console.log(this.api.nUsers)
   }
+  // Funkcija ki vrne vsebino blog-a v novi komponenti. 
+  // Function which returns blog content to another component.  
   async openDialog(content:string){
    this.dialog.open(FromCardsComponent, {width:'60%',data:{content:content}});
-   
   }
+
+
+  
   
 }
 

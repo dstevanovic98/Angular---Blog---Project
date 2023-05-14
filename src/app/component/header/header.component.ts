@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { timer } from 'rxjs';
+import { async, timer } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -10,22 +10,27 @@ import { ApiService } from 'src/app/services/api.service';
 export class HeaderComponent implements OnInit {
   dateTime: Date | undefined
   nUser = 0;
-
+  login:boolean = false;
   constructor(private api: ApiService) { }
 
   async ngOnInit(): Promise<any> {
 
-    timer(0, 1000).subscribe(() => { this.dateTime = new Date() })
+  //Na vsako sekudno posodobimo čas in ga prikažemo na začetno stran.
+  // Checks time on every second, and shows it on home page.
+    timer(0, 1000).subscribe(async() => { this.dateTime = new Date()
+    }) 
 
-    timer(0, 10000).subscribe(async () => { 
+// Preverimo na vsako sekundo če je uporabnik prisoten. Če je potem dodelimo vrednost 1, če ni potem je vr. 0;
+// On every second we check if user is logedin. If there is loged user, we change number of users to 1. Otherwise, value is 0.
+    timer(0, 1000).subscribe(async () => { 
       
       if(await this.api.isLoggedIn() == true) {
+      this.login = true;
       this.nUser = 1;
     }
     else this.nUser = 0;
   })
 }
-
 
   async logout() {
     await this.api.logout();
