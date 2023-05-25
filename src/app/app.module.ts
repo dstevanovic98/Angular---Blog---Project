@@ -24,7 +24,8 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {MatExpansionModule} from '@angular/material/expansion'; 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
-import { FromCardsComponent } from './component/users/showdata/from-cards/from-cards.component'; 
+import { FromCardsComponent } from './component/users/showdata/from-cards/from-cards.component';
+
 
 
 
@@ -39,7 +40,8 @@ import { FromCardsComponent } from './component/users/showdata/from-cards/from-c
     LoginComponent,
     RegisterComponent,
     CreateblogComponent,
-    FromCardsComponent
+    FromCardsComponent,
+
    
    
    
@@ -65,7 +67,9 @@ import { FromCardsComponent } from './component/users/showdata/from-cards/from-c
     Ng2SearchPipeModule,
     MatExpansionModule,
     MatSnackBarModule, 
-    MatDialogModule
+    MatDialogModule,
+    
+    
     
 
   ],

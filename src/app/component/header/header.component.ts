@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { async, timer } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
+import { interval, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -8,39 +10,42 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  dateTime: Date | undefined
+
   nUser = 0;
-  login:boolean = false;
+  login: boolean = false;
+  dateTime: Date | undefined;
   constructor(private api: ApiService) { }
 
-  async ngOnInit(): Promise<any> {
+  ngOnInit() {
+    // Checks time on every second and shows it on the home page.
+    setInterval(() => {
+      this.dateTime = new Date(); 
 
-  //Na vsako sekudno posodobimo čas in ga prikažemo na začetno stran.
-  // Checks time on every second, and shows it on home page.
-    timer(0, 1000).subscribe(async() => { this.dateTime = new Date()
-    }) 
+        this.api.isLoggedIn().subscribe(loggedin => {
+          if (loggedin) {
+            console.log(loggedin)
+            this.login = true;
+            this.nUser = 1;
+          } else {
+            this.nUser = 0;
+          }
+        })
 
-// Preverimo na vsako sekundo če je uporabnik prisoten. Če je potem dodelimo vrednost 1, če ni potem je vr. 0;
-// On every second we check if user is logedin. If there is loged user, we change number of users to 1. Otherwise, value is 0.
-    timer(0, 1000).subscribe(async () => { 
       
-      if(await this.api.isLoggedIn() == true) {
-      this.login = true;
-      this.nUser = 1;
-    }
-    else this.nUser = 0;
-  })
-}
+    }, 1000)
 
-  async logout() {
-    await this.api.logout();
+
+
+    // On every second, we check if the user is logged in. If there is a logged-in user, we change the number of users to 1. Otherwise, the value is 0.
   }
 
- async status(){
-  if(this.nUser == 1)return true;
- else return false;
-}
+  logout(): Observable<any> {
+    return this.api.logout();
+  }
 
+  status(): Observable<boolean> {
+    return of(this.nUser === 1);
+  }
 }
 
 

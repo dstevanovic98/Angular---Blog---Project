@@ -3,6 +3,11 @@ import { ApiService } from 'src/app/services/api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog  } from '@angular/material/dialog';
 import { FromCardsComponent } from '../users/showdata/from-cards/from-cards.component';
+import { from } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+
+
 
 @Component({
   selector: 'app-home',
@@ -20,41 +25,28 @@ export class HomeComponent {
   constructor(private api: ApiService, private snackBar: MatSnackBar, private dialog:MatDialog) {
     this.refreshBlogs();
   }
-
-  async refreshBlogs() {
-
-    const response = await this.api.getAllData();
-
-    if (response !== null) {
-      this.blogs = response;
-    }
-    else {
-      console.error('Noting to show');
-    }
+ 
+  refreshBlogs() {
+    this.api.getAllData().subscribe(res => {this.blogs = res.data});
   }
   // Odpira SnackBar in izpiše liked če je uporabnik prijavljen. 
   // Opens SnapBar and write (status) message.  
-  async openSnackBar(message:string , action: string) {
-   
-    if(await this.api.isLoggedIn() == true){
-      this.snackBar.open(message,action,{panelClass:'snackbar', duration: 3000});
-    }
-    else{ 
-    this.snackBar.open('Error: Not logged in! To like, you must be loged in!','', {duration: 2000});
-    }
-    console.log(this.api.nUsers)
+  openSnackBar(message: string, action: string) {
+    from(this.api.isLoggedIn()).pipe(
+      tap(isLoggedIn => {
+        if (isLoggedIn) {
+          this.snackBar.open(message, action, { panelClass: 'snackbar', duration: 3000 });
+        } else {
+          this.snackBar.open('Error: Not logged in! To like, you must be logged in!', '', { duration: 2000 });
+        }
+      })
+    ).subscribe(loggedIn => {});
+  
+    console.log(this.api.nUsers);
   }
   // Funkcija ki vrne vsebino blog-a v novi komponenti. 
   // Function which returns blog content to another component.  
-  async openDialog(content:string){
-   this.dialog.open(FromCardsComponent, {width:'60%',data:{content:content}});
+  openDialog(content: string) {
+    this.dialog.open(FromCardsComponent, { width: '60%', data: { content: content } });
   }
-
-
-  
-  
 }
-
-// Dobijamo sve sadržaje blogova:  " const response = await this.api.supabase.from('blogs').select('content'); " 
-// Dobijamo home stranicu na snackbar-u : " this.snackBar.openFromComponent(HomeComponent, { duration: 5000, verticalPosition: 'top'});"
-// const response  = await this.api.supabase.from('blogs').select('content').eq('id',2);

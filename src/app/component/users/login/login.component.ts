@@ -21,10 +21,11 @@ export class LoginComponent {
 
   login() {
    // this.supabase.loginUser(this.email, this.password).then(Response => {this.router.navigate(['home'])});
-   this.supabase.loginUser(this.email, this.password);
-   this.router.navigate(['home']);
-
-
+   this.supabase.loginUser(this.email, this.password).subscribe(res => {if (res.error == null){
+    console.log(res)
+    this.router.navigate(['home'])
+   }})
+  
 
   }
 }

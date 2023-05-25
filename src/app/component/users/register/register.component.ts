@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,7 @@ export class RegisterComponent {
 
   constructor(private supabase: ApiService) { }
   register() {
-    this.supabase.registerUser(this.email, this.password, this.firstName, this.lastName).then(Response => console.log(Response));
-  }
-}
+    from(this.supabase.registerUser(this.email, this.password, this.firstName, this.lastName)).subscribe(
+      response => console.log(response)
+    );
+}}
